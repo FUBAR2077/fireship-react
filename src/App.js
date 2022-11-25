@@ -8,6 +8,9 @@ import ButtonClickEvent from '../components/ButtonClickEvent';
 import InputLogEvent from '../components/InputLogEvent';
 
 import Incrementer from '../components/Incrementer';
+import ObjectIncrementer from '../components/ObjectIncrementer';
+
+import CountdownTimer from '../components/CountdownTimer';
 
 import './style.css';
 
@@ -30,12 +33,17 @@ export default function App() {
       //Loops
       <AnimalsList />
       <br />
+      //Lifecycle
+      <CountdownTimer hr={0} min={1} sec={0} />
+      <br />
       //Events
       <ButtonClickEvent />
       <InputLogEvent />
       <br />
       //State
       <Incrementer />
+      //State object
+      <ObjectIncrementer />
     </>
   );
 }
