@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LoadingButton from '../components/LoadingButton';
-import LoadingButton2 from '../components/LoadingButton';
+import AnimalsList from '../components/AnimalsList';
 import './style.css';
 
 export default function App() {
@@ -20,11 +20,7 @@ export default function App() {
         onClick={() => setIsLoading(!isLoading)}
       />
 
-      <LoadingButton2
-        label="press me"
-        loading={isLoading}
-        onClick={() => setIsLoading(!isLoading)}
-      />
+      <AnimalsList />
     </>
   );
 }
