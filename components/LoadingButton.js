@@ -10,12 +10,3 @@ export default function LoadingButton(props) {
     </button>
   );
 }
-
-// not working
-// export const LoadingButton = (props) => {
-//   return (
-//     <button onClick={props.onClick} type="button">
-//       {props.loading ? <div className="loader" /> : props.label}
-//     </button>
-//   );
-// };
