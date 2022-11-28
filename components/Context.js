@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 
-const CountContext = createContext(0);
+const CounterContext = createContext(0);
 
 export default function Context() {
   const [count, setCount] = useState(0);
@@ -12,19 +12,17 @@ export default function Context() {
   return (
     <>
       //Context
-      <CountContext.Provider value={{ count, setCount }}>
+      <CounterContext.Provider value={{ count, setCount }}>
         <Child />
         <button onClick={increment}>increment</button>
-      </CountContext.Provider>
+      </CounterContext.Provider>
 
-      <CountContext.Provider value={{ count, setCount }}>
+      <CounterContext.Provider value={{ count, setCount }}>
         {"error > 3"}
-        <CountError>
-            <Count />
-        </CountError>
-        <DecrementButton />
-      </CountContext.Provider>
-
+        <CounterErrorBoundary>
+            <Counter />
+        </CounterErrorBoundary>
+      </CounterContext.Provider>
     </>
   );
 }
@@ -34,7 +32,7 @@ function Child() {
 }
 
 function GrandChild() {
-  let { count } = useContext(CountContext);
+  let { count } = useContext(CounterContext);
 
   return (
     <>
@@ -43,40 +41,14 @@ function GrandChild() {
   );
 }
 
-function Count() {
-  const { count } = useContext(CountContext);
 
-  useEffect(() =>{
-    if(count > 3){
-      throw Error('error thrown');
-    }
-  });
-
-  return (
-  <>
-    <h3> {`Count component count: ${count}`}</h3>
-  </>
-  );
-}
-
-function DecrementButton() {
-  const { setCount } = useContext(CountContext);
-
-  return (
-    <button onClick={() => setCount((count) => count - 1)}>Decrement</button>
-  );
-}
-
-
-
-class CountError extends React.Component{
-  static countContext = CountContext;
-
+class CounterErrorBoundary extends React.Component{
   constructor(props){
     super(props);
     this.state = 
     {
-      error: null, errorInfo: null 
+      error: null, 
+      errorInfo: null 
     }
   }
 
@@ -94,9 +66,11 @@ class CountError extends React.Component{
 
   componentDidCatch(err, errInfo){
     this.setState({
-      error: error,
-      errorInfo: errorInfo
+      error: err,
+      errorInfo: errInfo
     })
+
+    console.log(err, errInfo);
   }
 
   render(){
@@ -109,11 +83,31 @@ class CountError extends React.Component{
     }
     return (
       <>
-        <button onClick={this.incrementCount}>increment {this.state.count}</button>
         {this.props.children}
       </>
       );
   }
 }
 
-CountError.contextType = CountContext;
+class Counter extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
+  render(){
+    const counterContext = this.context;
+
+    if(counterContext.count > 3){
+      throw new Error('error thrown');
+    }
+
+    return(
+    <>
+      <h3> {`Count component count: ${counterContext.count}`}</h3>
+    </>
+    );
+  };
+}
+
+Counter.contextType = CounterContext;
+
