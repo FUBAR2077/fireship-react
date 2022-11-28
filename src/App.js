@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Navbar from '../components/Navbar';
+
 import LoadingButton from '../components/LoadingButton';
 
 import AnimalsList from '../components/AnimalsList';
@@ -19,31 +21,37 @@ export default function App() {
 
   return (
     <>
-      <div>
-        <h1>Fireship - React</h1>
-      </div>
-      <br />
-      //Conditional rendering
-      <LoadingButton
-        label="press me"
-        loading={isLoading}
-        onClick={() => setIsLoading(!isLoading)}
-      />
-      <br />
-      //Loops
-      <AnimalsList />
-      <br />
-      //Lifecycle
-      <CountdownTimer hr={0} min={1} sec={0} />
-      <br />
-      //Events
-      <ButtonClickEvent />
-      <InputLogEvent />
-      <br />
-      //State
-      <Incrementer />
-      //State object
-      <ObjectIncrementer />
+      {true && (
+        <>
+          <div>
+            <div>
+              <h1>Fireship - React</h1>
+            </div>
+            <br />
+            //Conditional rendering
+            <LoadingButton
+              label="press me"
+              loading={isLoading}
+              onClick={() => setIsLoading(!isLoading)}
+            />
+            <br />
+            //Loops
+            <AnimalsList />
+            <br />
+            //Events
+            <ButtonClickEvent />
+            <InputLogEvent />
+            <br />
+            //State
+            <Incrementer />
+            //State object
+            <ObjectIncrementer />
+            <br />
+            //Lifecycle
+            <CountdownTimer hr={0} min={1} sec={0} />
+          </div>
+        </>
+      )}
     </>
   );
 }
