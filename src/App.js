@@ -14,6 +14,8 @@ import ObjectIncrementer from '../components/ObjectIncrementer';
 
 import CountdownTimer from '../components/CountdownTimer';
 
+import Context from '../components/Context';
+
 import './style.css';
 
 export default function App() {
@@ -49,6 +51,8 @@ export default function App() {
             <br />
             //Lifecycle
             <CountdownTimer hr={0} min={1} sec={0} />
+            //Context
+            <Context />
           </div>
         </>
       )}
