@@ -1,5 +1,5 @@
 body {
-  height: 150vh;
+  height: 200vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,3 +81,10 @@ button {
 .navbar li {
   border-radius: 50%;
 }
+
+.error-boundary {
+  padding: 0.5rem 1rem;
+  border: solid 4px #ff0000;
+  border-radius: 0.5rem;
+}
+

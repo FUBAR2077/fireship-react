@@ -51,7 +51,6 @@ export default function App() {
             <br />
             //Lifecycle
             <CountdownTimer hr={0} min={1} sec={0} />
-            //Context
             <Context />
           </div>
         </>
